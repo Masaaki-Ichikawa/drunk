@@ -1,0 +1,39 @@
+body {
+    background-color: black;
+}
+
+.neon-title {
+    font-size: 50px;
+    position: relative;
+    display: inline-block;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgb(188, 255, 95);
+    text-shadow: 0 0 1px #161515, 0 0 3px #282828, 0px 0px 6px #fff894, 0 0 10px #ddd230, 0 0 30px #dddd30, 0 0 50px #dddd30, 0 15px 5px #000;
+}
+
+.neon-title span {
+    font-size: 50px;
+    position: absolute;
+    top: 4%;
+    left: 8%;
+    opacity: .3;
+}
+
+.flash {
+    animation: flash-anime 5s linear infinite;
+}
+
+@keyframes flash-anime {
+    0%   {opacity: 1;}
+    50%  {opacity: 1;}
+    51%  {opacity: 0.3;}
+    52%  {opacity: 1;}
+    75% {opacity: 1;}
+    76% {opacity: 0.6;}
+    77% {opacity: 1;}
+    78% {opacity: 0.3;}
+    79% {opacity: 1;}
+}
+
+
+  

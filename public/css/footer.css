@@ -1,0 +1,17 @@
+.icon {
+    font-size: 30px;
+    font-weight: 100;
+    position: relative;
+    display: inline-block;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgb(179, 0, 255);
+    text-shadow: 0 0 1px #161313, 0 0 3px #282828, 0px 0px 6px #eb94ff, 0 0 10px #c330dd, 0 0 30px #cf30dd, 0 0 50px #c930dd, 0 15px 5px #000;
+}
+
+.plus {
+    font-size: 40px;
+}
+
+.active {
+    text-shadow: 0 0 1px #ffffff, 0 0 3px #282828, 0px 0px 6px #eb94ff, 0 0 10px #c330dd, 0 0 30px #cf30dd, 0 0 50px #c930dd, 0 15px 5px #000;
+}
