@@ -21,8 +21,8 @@
         <div class="radiobox flex">
             @foreach ($jenres as $jenre)
                 <div>
-                    <input type="radio" class="hidden peer" name="jenre_id" id="{{ $jenre->name }}" value="{{ $jenre->id }}" />
-                    <label for="{{ $jenre->name }}" class="mx-1 p-1 border border-gray-300 rounded peer-checked:bg-green-500 peer-checked:text-gray-50 ">{{ $jenre->name }}</label>
+                    <input type="radio" class="hidden peer" name="jenre_id" id="{{ $jenre->jenre }}" value="{{ $jenre->id }}" />
+                    <label for="{{ $jenre->jenre }}" class="mx-1 p-1 border border-gray-300 rounded peer-checked:bg-green-500 peer-checked:text-gray-50 ">{{ $jenre->jenre }}</label>
                 </div>
             @endforeach           
         </div>

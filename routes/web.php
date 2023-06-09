@@ -39,9 +39,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 // マイページ
-Route::get('/user_mypage', function () {
-    return view('user_mypage');
-})->name('user_mypage');
+Route::get('/user_mypage', [RecipeController::class, 'showMyRecipes'])->name('user_mypage');
 
 // 新規投稿ページ
 Route::get('/new_recipe', [JenreController::class, 'getJenre'])->name('new_recipe');

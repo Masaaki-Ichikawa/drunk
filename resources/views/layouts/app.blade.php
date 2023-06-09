@@ -25,7 +25,7 @@
             <!-- Page Heading -->
                 <header class="header bg-black w-full fixed">
                     <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
-                        @include('layouts.header')
+                        @include('components.header')
                     </div>
                 </header>
 
@@ -36,7 +36,7 @@
 
             {{-- フッター --}}
             <footer>
-                @include('layouts.footer_navigation')
+                @include('components.footer_navigation')
             </footer>
         </div>
         
