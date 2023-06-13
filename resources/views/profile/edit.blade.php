@@ -6,7 +6,7 @@
     </x-slot> --}}
 
     <x-slot name="header" class="bg-black">
-        @include('layouts.header')
+        @include('components.header')
      </x-slot>
 
     <div class="py-12">

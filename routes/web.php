@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\JenreController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeController;
@@ -22,10 +23,6 @@ Route::get('/', function () {
 });
 
 // トップページ
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::get('/dashboard', [RecipeController::class, 'showRecipes'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::post('/dashboard', [RecipeController::class, 'uploadRecipe'])->name('upload');
 
@@ -41,8 +38,20 @@ require __DIR__.'/auth.php';
 // マイページ
 Route::get('/user_mypage', [RecipeController::class, 'showMyRecipes'])->name('user_mypage');
 
+//ほかのユーザーの投稿一覧
+Route::get('/user_recipes', [RecipeController::class, 'showUserRecipes'])->name('user_recipes');
+
 // 新規投稿ページ
 Route::get('/new_recipe', [JenreController::class, 'getJenre'])->name('new_recipe');
 
-//新規投稿作業
+//新規投稿実行
 Route::post('/upload', [RecipeController::class, 'uploadRecipe'])->name('upload');
+
+//投稿詳細
+Route::get('/recipe_detail', [RecipeController::class, 'recipeDetail'])->name('recipe_detail');
+
+//コメントページ
+Route::get('/comment', [CommentController::class, 'commentForm'])->name('comment');
+
+//コメントアップロード処理
+Route::post('/comment_upload', [CommentController::class, 'uploadComment'])->name('comment_upload');

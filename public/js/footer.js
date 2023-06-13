@@ -1,5 +1,5 @@
 const pageName = location.pathname
-if (pageName == '/dashboard') {
+if ((pageName == '/dashboard') || (pageName == '/recipe_detail')) {
     $('.glass').addClass('active')
 } else {
     $('.glass').removeClass('active')

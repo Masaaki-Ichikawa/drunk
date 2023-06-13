@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Jenre;
 use Illuminate\Http\Request;
 use App\Models\Recipe;
@@ -10,8 +11,9 @@ use Illuminate\Support\Facades\DB;
 
 class RecipeController extends Controller
 {
+    //一覧表示、ジャンル別表示 
     public function showRecipes(Request $request) {
-        //一覧表示、ジャンル別表示        
+               
         if (isset($request->jenre_id)) {
             $recipes = Recipe::with('user')->where('jenre_id', $request->jenre_id)->latest()->get();
         } else {
@@ -22,6 +24,7 @@ class RecipeController extends Controller
         return view('dashboard', ['recipes' => $recipes, 'jenres' => $jenres]);
     }
 
+    //レシピアップロード処理
     public function uploadRecipe(Request $request) { 
         //ディレクトリ名
         $dir = 'images';
@@ -43,9 +46,33 @@ class RecipeController extends Controller
         return redirect('dashboard');
     }
 
+    //マイページレシピ
     public function showMyRecipes(Request $request) {
-            $recipes = Recipe::with('user')->where('user_id', $request->user()->id)->latest()->get();
+        $recipes = Recipe::with('user')->where('user_id', $request->user()->id)->latest()->get();
 
-        return view('user_mypage', ['recipes' => $recipes]);
+        return view('user_mypage', ['recipes' => $recipes, 'request' => $request]);
+    }
+
+
+    ////ほかのユーザーの投稿一覧
+    public function showUserRecipes(Request $request) 
+    {
+        // dd($request);
+        $user_recipes = Recipe::with('user')->where('user_id', $request->user_id)->latest()->get();
+        return view('user_recipes', ['user_recipes' => $user_recipes, 'request' => $request]);
+    }
+    
+    
+    /**
+     * レシピ詳細
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function recipeDetail(Request $request)
+    {
+        $recipe = Recipe::with('user')->where('id', $request->recipe_id)->get();
+        $comments = Comment::with('user')->where('recipe_id', $request->recipe_id)->latest()->get();
+        return view('recipe_detail', ['recipe' => $recipe, 'comments' => $comments]);
     }
 }
