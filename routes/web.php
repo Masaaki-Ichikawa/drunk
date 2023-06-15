@@ -67,3 +67,9 @@ Route::get('/recipe_del_conf/{recipe}', [RecipeController::class, 'recipeDelConf
 
 //投稿削除実行
 Route::get('/recipe_del/{recipe}', [RecipeController::class, 'recipeDel'])->name('recipe_del');
+
+//コメント削除ページ
+Route::get('/comment_del_conf/{comment}', [CommentController::class, 'commentDelConf'])->name('comment_del_conf');
+
+//コメント削除実行
+Route::get('/comment_del/{comment}', [CommentController::class, 'commentDel'])->name('comment_del');
