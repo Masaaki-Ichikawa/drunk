@@ -66,8 +66,9 @@ class RecipeController extends Controller
     //マイページレシピ
     public function showMyRecipes(Request $request) {
         $recipes = Recipe::with('user')->where('user_id', $request->user()->id)->latest()->get();
+        $comments = Comment::with('user')->where('user_id', $request->user()->id)->latest()->get();
 
-        return view('user_mypage', ['recipes' => $recipes, 'request' => $request]);
+        return view('user_mypage', ['recipes' => $recipes, 'comments' => $comments, 'request' => $request]);
     }
 
 

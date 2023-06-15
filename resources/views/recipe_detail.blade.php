@@ -11,7 +11,7 @@
 
                 <img class="w-1/2 h-1/2 pt-6" src="{{ asset($recipe_detail->image_path) }}" alt="">
 
-                <p for="recipe" class="text-xl text-gray-500 pt-8 mx-6">{{ $recipe_detail->recipe }}</p>
+                <p for="recipe" class="text-xl text-gray-500 pt-8 mx-6">{!! nl2br( $recipe_detail->recipe) !!}}</p>
             </div>
 
             @foreach ($comments as $comment)
@@ -20,7 +20,7 @@
                         <a class="text-lg" href="{{ route('user_recipes', ['user_id' => $comment->user->id, 'user_name' => $comment->user->name]) }}">{{ $comment->user->name }}</a>
                         <a class="text-sm mt-1 pl-1" href="{{ route('user_recipes', ['user_id' => $comment->user->id, 'user_name' => $comment->user->name]) }}">{{ $comment->created_at }}</a>
                     </div>
-                    <p class="ml-6">{{ $comment->comment }}</p>
+                    <p class="ml-6">{!! nl2br( $comment->comment) !!}</p>
                 </div>
             @endforeach
 

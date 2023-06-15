@@ -32,7 +32,7 @@
                         <img class="w-1/3 mr-4 max-h-1/3" src="{{ asset($recipe->image_path) }}" alt="">
                         <div class="mx-auto">
                             <p class="text-lg text-center">{{ $recipe->name }}</p>
-                            <p class="txt-limit">{{ $recipe->recipe }}</p>
+                            <p class="txt-limit">{!! nl2br( $recipe->recipe) !!}</p>
                             {{-- <a class="text-blue-500 mx-auto" href={{route('recipe_detail', $recipe->id)}}>レシピ詳細へ</a> --}}
                             <form action="{{route('recipe_detail')}}" method="get">
                                 <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
