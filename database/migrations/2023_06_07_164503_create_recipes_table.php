@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('recipes', function (Blueprint $table) {
             $table->id()->unique();
             $table->string('name', 30)->nullable(false);
-            $table->string('recipe', 300)->nullable(false);
+            $table->string('recipe', 500)->nullable(false);
             $table->string('image_path', 100);
-            $table->foreignId('jenre_id')->constrained()->nullable(false);
-            $table->foreignId('user_id')->constrained()->nullable(false);
+            $table->foreignId('jenre_id')->nullable(false)->constrained();
+            $table->foreignId('user_id')->nullable(false)->constrained();
             $table->timestamps();
         });
     }
@@ -27,6 +27,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('comments');
         Schema::dropIfExists('recipes');
     }
 };

@@ -29,7 +29,7 @@
 
                     {{-- レシピ --}}
                     <div  class="flex mt-2">
-                        <img class="w-1/3 mr-4" src="{{ asset($recipe->image_path) }}" alt="">
+                        <img class="w-1/3 mr-4 max-h-1/3" src="{{ asset($recipe->image_path) }}" alt="">
                         <div class="mx-auto">
                             <p class="text-lg text-center">{{ $recipe->name }}</p>
                             <p class="txt-limit">{{ $recipe->recipe }}</p>

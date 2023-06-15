@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+    //コメントページ表示
     public function commentForm(Request $request) {
         // dd($request);
         return view('comment', ['value' => $request]);
     }
 
+    //コメント投稿実行
     public function uploadComment(Request $request) {
         $comment = new Comment();
         $comment->user_id = $request->user_id;
@@ -21,4 +23,7 @@ class CommentController extends Controller
 
         return redirect()->route('recipe_detail', ['recipe_id' => $request->recipe_id]);
     }
+
+    //コメント編集
+    
 }

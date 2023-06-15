@@ -16,13 +16,13 @@ class JenresTableSeeder extends Seeder
     public function run(): void
     {
         DB::table('jenres')->insert([
-            ['name' => 'サワー'],
-            ['name' => 'カクテル'],
-            ['name' => '茶割'],
-            ['name' => 'ハイボール'],
-            ['name' => 'ワイン'],
-            ['name' => '日本酒'],
-            ['name' => 'ビール'],
+            ['jenre' => 'サワー'],
+            ['jenre' => 'カクテル'],
+            ['jenre' => '茶割'],
+            ['jenre' => 'ハイボール'],
+            ['jenre' => 'ワイン'],
+            ['jenre' => '日本酒'],
+            ['jenre' => 'ビール'],
         ]);
     }
 }
