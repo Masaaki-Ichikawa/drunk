@@ -11,7 +11,7 @@
 
                 <img class="w-1/2 h-1/2 pt-6" src="{{ asset($recipe_detail->image_path) }}" alt="">
 
-                <p for="recipe" class="text-xl text-gray-500 pt-8 mx-6">{!! nl2br( $recipe_detail->recipe) !!}}</p>
+                <p for="recipe" class="text-xl text-gray-500 pt-8 mx-6">{!! nl2br( $recipe_detail->recipe) !!}</p>
             </div>
 
             @foreach ($comments as $comment)
