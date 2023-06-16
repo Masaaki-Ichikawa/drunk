@@ -22,7 +22,10 @@
                     <p>メール：{{ $user->email }}</p>
                     <a href="{{ route('user_recipes', ['user_id' => $user->id, 'user_name' => $user->name]) }}">投稿一覧</a>
                 </div>
-                <a href="{{ route('user_del_conf', $user->id) }}"><i class="fa-regular fa-trash-can"></i></a>
+                <div>
+                    <a id="become-admin" class="mr-4 px-2 border border-gray-300 rounded" onclick='return confirm("管理者にしますか？");' href="{{ route('become_admin', $user->id) }}">管理者にする</a>
+                    <a href="{{ route('user_del_conf', $user->id) }}"><i class="fa-regular fa-trash-can"></i></a>
+                </div>                
             </div>
                 
         </div>

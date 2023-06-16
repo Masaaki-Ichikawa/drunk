@@ -80,3 +80,6 @@ Route::get('/user_del_conf/{user}', [UserController::class, 'userDelConf'])->nam
 
 //ユーザー削除実行
 Route::get('/user_del/{user}', [UserController::class, 'userDel'])->name('user_del');
+
+//ユーザーから管理者へ
+Route::get('/become_admin/{user}', [UserController::class, 'becomeAdmin'])->name('become_admin');

@@ -6,7 +6,7 @@
     </div>
         @foreach ($recipe as $recipe_detail)
             <div class="pb-4 flex flex-col items-center border-b-2 border-gray-300">
-                <p>{{ $recipe_detail->user->name }}</p>
+                <p class="text-2xl">{{ $recipe_detail->user->name }}</p>
                 <p class="text-3xl mt-4">{{ $recipe_detail->name }}</p>
 
                 <img class="w-1/2 h-1/2 pt-6" src="{{ asset($recipe_detail->image_path) }}" alt="">
