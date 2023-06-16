@@ -20,4 +20,15 @@ class UserController extends Controller
         $user->delete();
         return redirect('user_mypage');
     }
+
+
+    //ユーザーから管理者に格上げ
+    public function becomeAdmin(User $user) 
+    {
+        $user->where('id', $user->id)->update([
+            'role' => 'admin'
+        ]);
+
+        return redirect('user_mypage');
+    }
 }
