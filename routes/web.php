@@ -4,6 +4,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\JenreController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,7 +37,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 // マイページ
-Route::get('/user_mypage', [RecipeController::class, 'showMyRecipes'])->name('user_mypage');
+Route::get('/user_mypage', [RecipeController::class, 'showMypage'])->name('user_mypage');
 
 //ほかのユーザーの投稿一覧
 Route::get('/user_recipes', [RecipeController::class, 'showUserRecipes'])->name('user_recipes');
@@ -73,3 +74,9 @@ Route::get('/comment_del_conf/{comment}', [CommentController::class, 'commentDel
 
 //コメント削除実行
 Route::get('/comment_del/{comment}', [CommentController::class, 'commentDel'])->name('comment_del');
+
+//ユーザー削除確認ページ
+Route::get('/user_del_conf/{user}', [UserController::class, 'userDelConf'])->name('user_del_conf');
+
+//ユーザー削除実行
+Route::get('/user_del/{user}', [UserController::class, 'userDel'])->name('user_del');

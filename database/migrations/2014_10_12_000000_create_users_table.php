@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $tabele->
+            $table->string('role', 10)->default('user')->nullable(false);
         });
     }
 
@@ -28,6 +28,8 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('comments');
+        Schema::dropIfExists('recipes');
         Schema::dropIfExists('users');
     }
 };

@@ -64,11 +64,17 @@ class RecipeController extends Controller
     }
 
     //マイページレシピ
-    public function showMyRecipes(Request $request) {
-        $recipes = Recipe::with('user')->where('user_id', $request->user()->id)->latest()->get();
-        $comments = Comment::with('user')->where('user_id', $request->user()->id)->latest()->get();
+    public function showMypage(Request $request) {
+        if ($request->user()->role === 'user') {
+            $recipes = Recipe::with('user')->where('user_id', $request->user()->id)->latest()->get();
+            $comments = Comment::with('user')->where('user_id', $request->user()->id)->latest()->get();
 
-        return view('user_mypage', ['recipes' => $recipes, 'comments' => $comments, 'request' => $request]);
+            return view('user_mypage', ['recipes' => $recipes, 'comments' => $comments, 'request' => $request]);
+        } elseif ($request->user()->role === 'admin') {
+            $users = User::where('role', 'user')->latest()->get();
+            return view('admin_mypage', ['users' => $users, 'request' => $request]);
+        }
+        
     }
 
 
