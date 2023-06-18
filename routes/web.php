@@ -81,5 +81,10 @@ Route::get('/user_del_conf/{user}', [UserController::class, 'userDelConf'])->nam
 //ユーザー削除実行
 Route::get('/user_del/{user}', [UserController::class, 'userDel'])->name('user_del');
 
-//ユーザーから管理者へ
-Route::get('/become_admin/{user}', [UserController::class, 'becomeAdmin'])->name('become_admin');
+//管理者追加フォーム
+Route::get('/register_admin_form', function () {
+    return view('register_admin_form');
+})->name('register_admin_form');
+
+//管理者追加
+Route::post('/regist_admin', [UserController::class, 'adminRegister'])->name('regist_admin');

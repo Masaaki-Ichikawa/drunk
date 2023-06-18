@@ -71,8 +71,9 @@ class RecipeController extends Controller
 
             return view('user_mypage', ['recipes' => $recipes, 'comments' => $comments, 'request' => $request]);
         } elseif ($request->user()->role === 'admin') {
-            $users = User::where('role', 'user')->latest()->get();
-            return view('admin_mypage', ['users' => $users, 'request' => $request]);
+            $users_user = User::where('role', 'user')->latest()->get();
+            $users_admin = User::where('role', 'admin')->latest()->get();
+            return view('admin_mypage', ['users_user' => $users_user, 'users_admin' => $users_admin, 'request' => $request]);
         }
         
     }
