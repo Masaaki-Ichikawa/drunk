@@ -15,7 +15,9 @@
         @if ($errors->has('image'))
         <p class="text-red-500">{{ $errors->first('image') }}</p>
         @endif
-        <div class="w-11/12 pt-6" id="preview"></div>
+        <div class="w-11/12 m-auto">
+            <div class="m-auto pt-6" id="preview"></div>
+        </div>
 
         <input id="image" class="mt-6" name="image" type="file" onchange="imgPreView(event)">
 

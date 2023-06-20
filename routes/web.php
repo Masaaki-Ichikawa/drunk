@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\JenreController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeController;
@@ -88,3 +89,10 @@ Route::get('/register_admin_form', function () {
 
 //管理者追加
 Route::post('/regist_admin', [UserController::class, 'adminRegister'])->name('regist_admin');
+
+
+//いいね機能
+Route::post('/like', [LikeController::class, 'like'])->name('recipes.like');
+
+//いいねランキングページ
+Route::get('/rank', [RecipeController::class, 'rank'])->name('rank');

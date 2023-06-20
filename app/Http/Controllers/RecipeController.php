@@ -14,9 +14,9 @@ class RecipeController extends Controller
     //一覧表示、ジャンル別表示 
     public function showRecipes(Request $request) {
         if (isset($request->jenre_id)) {
-            $recipes = Recipe::with('user')->where('jenre_id', $request->jenre_id)->latest()->get();
+            $recipes = Recipe::withCount('likes')->with('user')->where('jenre_id', $request->jenre_id)->latest()->get();
         } else {
-            $recipes = Recipe::with('user')->latest()->get();
+            $recipes = Recipe::withCount('likes')->with('user')->latest()->get();
         }
 
         $jenres = Jenre::get();
@@ -66,7 +66,7 @@ class RecipeController extends Controller
     //マイページレシピ
     public function showMypage(Request $request) {
         if ($request->user()->role === 'user') {
-            $recipes = Recipe::with('user')->where('user_id', $request->user()->id)->latest()->get();
+            $recipes = Recipe::withCount('likes')->with('user')->where('user_id', $request->user()->id)->latest()->get();
             $comments = Comment::with('user')->where('user_id', $request->user()->id)->latest()->get();
 
             return view('user_mypage', ['recipes' => $recipes, 'comments' => $comments, 'request' => $request]);
@@ -79,10 +79,10 @@ class RecipeController extends Controller
     }
 
 
-    ////ほかのユーザーの投稿一覧
+    //ほかのユーザーの投稿一覧
     public function showUserRecipes(Request $request) 
     {
-        $user_recipes = Recipe::with('user')->where('user_id', $request->user_id)->latest()->get();
+        $user_recipes = Recipe::withCount('likes')->with('user')->where('user_id', $request->user_id)->latest()->get();
         return view('user_recipes', ['user_recipes' => $user_recipes, 'request' => $request]);
     }
     
@@ -160,5 +160,19 @@ class RecipeController extends Controller
     {
         $recipe->delete();
         return redirect('user_mypage');
+    }
+
+
+    //いいねランキングページ
+    public function rank(Request $request) 
+    {
+        if (isset($request->jenre_id)) {
+            $recipes = Recipe::withCount('likes')->with('user')->where('jenre_id', $request->jenre_id)->orderBy('likes_count', 'desc')->orderBy('created_at', 'desc')->get();
+        } else {
+            $recipes = Recipe::withCount('likes')->with('user')->orderBy('likes_count', 'desc')->orderBy('created_at', 'desc')->get();
+        }
+
+        $jenres = Jenre::get();
+        return view('rank', ['recipes' => $recipes, 'jenres' => $jenres]);
     }
 }
