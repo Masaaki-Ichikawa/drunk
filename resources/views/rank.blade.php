@@ -4,18 +4,20 @@
         <div class="pb-2 border-b border-gray-400">
             <div class="w-11/12 mx-auto flex flex-wrap">
                 @foreach ($jenres as $jenre)
-                    <form class="mb-2" action="{{ route('dashboard') }}" method="get">
+                    <form class="mb-2" action="{{ route('rank') }}" method="get">
                         @csrf
                         <input type="hidden" name="jenre_id" id="{{ $jenre->jenre }}" value="{{ $jenre->id }}" />
                         <button class="mx-1 px-1 border border-gray-300 rounded">{{ $jenre->jenre }}</button>
                     </form>
                 @endforeach
-                <form class="mb-2" action="{{ route('dashboard') }}" method="get">
+                <form class="mb-2" action="{{ route('rank') }}" method="get">
                     <input type="radio" class="hidden peer" name="jenre_id" id="all" value="all" />
                     <button class="mx-1 px-1 border border-gray-300 rounded">すべて</button>
                 </form>
             </div>
         </div>
+
+
 
         {{-- レシピ --}}
         @foreach ($recipes as $recipe)
@@ -43,6 +45,7 @@
                     
 
                     <div class="flex justify-around mt-4 mb-3">
+                        {{-- {{ dd($recipe->likes_count) }} --}}
                         @if (!$recipe->isLikedBy(Auth::user()))
                             <span class="likes">
                                 <i class="fa-regular fa-thumbs-up text-xl like-toggle" data-recipe-id="{{ $recipe->id }}"></i>

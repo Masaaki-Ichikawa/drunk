@@ -4,3 +4,7 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
 }
+
+.liked {
+    color: yellow;
+}

@@ -41,9 +41,17 @@
                     </div>
 
                     <div class="flex justify-around mt-4 mb-3">
-                        <a href="">
-                            <i class="fa-regular fa-thumbs-up text-xl"></i>
-                        </a>
+                        @if (!$recipe->isLikedBy(Auth::user()))
+                            <span class="likes">
+                                <i class="fa-regular fa-thumbs-up text-xl like-toggle" data-recipe-id="{{ $recipe->id }}"></i>
+                            <span class="like-counter">{{$recipe->likes_count}}</span>
+                            </span><!-- /.likes -->
+                        @else
+                            <span class="likes">
+                                <i class="fa-solid fa-thumbs-up text-xl heart like-toggle liked" data-recipe-id="{{ $recipe->id }}"></i>
+                            <span class="like-counter">{{$recipe->likes_count}}</span>
+                            </span><!-- /.likes -->
+                        @endif
 
                         <form action="{{ route('comment') }}" method="get">
                             <input type="hidden" name="user_id" value="{{ $recipe->user->id }}">

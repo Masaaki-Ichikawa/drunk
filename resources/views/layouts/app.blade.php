@@ -44,8 +44,7 @@
         
         <script src="/js/footer.js"></script>
         <script src="/js/recipe.js"></script>
-        <script src="/js/dashbord.js"></script>
+        <script src="/js/like.js"></script>
         <script src="/js/new_recipe.js"></script>
-        <script src="/js/admin.js"></script>
     </body>
 </html>
