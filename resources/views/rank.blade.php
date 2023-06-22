@@ -2,73 +2,89 @@
     <div class="mt-10">
         {{-- ジャンルボタン --}}
         <div class="pb-2 border-b border-gray-400">
+            <h1 class="font-bold text-xl text-center mb-4">ランキング</h1>
             <div class="w-11/12 mx-auto flex flex-wrap">
-                @foreach ($jenres as $jenre)
-                    <form class="mb-2" action="{{ route('rank') }}" method="get">
-                        @csrf
-                        <input type="hidden" name="jenre_id" id="{{ $jenre->jenre }}" value="{{ $jenre->id }}" />
-                        <button class="mx-1 px-1 border border-gray-300 rounded">{{ $jenre->jenre }}</button>
-                    </form>
-                @endforeach
-                <form class="mb-2" action="{{ route('rank') }}" method="get">
-                    <input type="radio" class="hidden peer" name="jenre_id" id="all" value="all" />
-                    <button class="mx-1 px-1 border border-gray-300 rounded">すべて</button>
-                </form>
+                @if ($request === null)
+                    @foreach ($jenres as $jenre)
+                        <form class="mb-2" action="{{ route('dashboard') }}" method="get">
+                            @csrf
+                            <input type="hidden" name="jenre_id" id="{{ $jenre->jenre }}" value="{{ $jenre->id }}" />
+                            <button class="mx-1 px-1 border border-gray-300 rounded">{{ $jenre->jenre }}</button>
+                        </form>
+                    @endforeach
+                        <form class="mb-2" action="{{ route('dashboard') }}" method="get">
+                            <input type="radio" class="hidden peer" name="jenre_id" id="all" value="all" />
+                            <button class="mx-1 px-1 border border-gray-300 rounded bg-green-500 text-gray-50">すべて</button>
+                        </form>
+                @else
+                    @foreach ($jenres as $jenre)
+                        <form class="mb-2" action="{{ route('dashboard') }}" method="get">
+                            @csrf
+                            @if ($request->jenre_id == $jenre->id)
+                                <input type="hidden" name="jenre_id" id="{{ $jenre->jenre }}" value="{{ $jenre->id }}" />
+                                <button class="mx-1 px-1 border border-gray-300 rounded bg-green-500 text-gray-50">{{ $jenre->jenre }}</button>
+                            @else
+                                <input type="hidden" name="jenre_id" id="{{ $jenre->jenre }}" value="{{ $jenre->id }}" />
+                                <button class="mx-1 px-1 border border-gray-300 rounded">{{ $jenre->jenre }}</button>
+                            @endif
+                            
+                        </form>
+                    @endforeach
+                        <form class="mb-2" action="{{ route('dashboard') }}" method="get">
+                            <input type="radio" class="hidden peer" name="jenre_id" id="all" value="all" />
+                            <button class="mx-1 px-1 border border-gray-300 rounded">すべて</button>
+                        </form>                    
+                @endif
             </div>
         </div>
 
 
-
         {{-- レシピ --}}
-        @foreach ($recipes as $recipe)
-            <div class="w-full border-b border-gray-300">
-                {{-- アカウント名、時間 --}}
-                <div class="w-11/12 mx-auto mt-1">
-                    <div class="flex">
-                        <a class="text-xl" href="{{ route('user_recipes', ['user_id' => $recipe->user->id, 'user_name' => $recipe->user->name]) }}">{{ $recipe->user->name }}</a>
-                        <a class="text-sm mt-1 pl-1" href="{{ route('user_recipes', ['user_id' => $recipe->user->id, 'user_name' => $recipe->user->name]) }}">{{ $recipe->created_at }}</a>
-                    </div>
+        @if ($recipes === null)
+            <h2 class="text-center mt-12">レシピが存在しません</h2>
+        @else
+            @foreach ($recipes as $recipe)
+                <div class="w-full border-b border-gray-300">
+                    <div class="w-11/12 mx-auto mt-1">
+                        
+                        {{-- レシピ --}}
+                        <a href="{{route('recipe_detail', ['recipe_id' => $recipe->id])}}" class="flex mt-2">
+                                <img class="mr-4 object-cover w-2/5 h-36" src="{{ asset($recipe->image_path) }}" alt="">
+                            
+                            <div class="w-1/2">
+                                <p class="font-bold text-2xl">{{ $recipe->name }}</p>
+                                <p class="txt-limit text-sm">{!! nl2br( $recipe->recipe) !!}</p>
+                                <p class="text-gray-500 text-xs">reciped by{{ $recipe->user->name }}</p>
+                            </div>                       
+                        </a>
+                        
 
-                    {{-- レシピ --}}
-                    <div  class="flex mt-2">
-                        <img class="w-1/3 mr-4 max-h-1/3" src="{{ asset($recipe->image_path) }}" alt="">
-                        <div class="mx-auto">
-                            <p class="text-lg text-center">{{ $recipe->name }}</p>
-                            <p class="txt-limit">{!! nl2br( $recipe->recipe) !!}</p>
-                            {{-- <a class="text-blue-500 mx-auto" href={{route('recipe_detail', $recipe->id)}}>レシピ詳細へ</a> --}}
-                            <form action="{{route('recipe_detail')}}" method="get">
+                        <div class="flex justify-around mt-4 mb-3">
+                            {{-- {{ dd($recipe->likes_count) }} --}}
+                            @if (!$recipe->isLikedBy(Auth::user()))
+                                <span class="likes">
+                                    <i class="fa-regular fa-thumbs-up text-xl like-toggle" data-recipe-id="{{ $recipe->id }}"></i>
+                                <span class="like-counter">{{$recipe->likes_count}}</span>
+                                </span><!-- /.likes -->
+                            @else
+                                <span class="likes">
+                                    <i class="fa-solid fa-thumbs-up text-xl heart like-toggle liked" data-recipe-id="{{ $recipe->id }}"></i>
+                                <span class="like-counter">{{$recipe->likes_count}}</span>
+                                </span><!-- /.likes -->
+                            @endif
+
+
+                            <form action="{{ route('comment') }}" method="get">
+                                <input type="hidden" name="user_id" value="{{ $recipe->user->id }}">
                                 <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
-                                <button class="text-blue-500 mx-auto">レシピ詳細へ</button>
+                                <button class="comment-btn">
+                                    <i class="fa-regular fa-comment-dots text-xl"></i>
+                                </button>
                             </form>
-                        </div>                       
-                    </div>
-                    
-
-                    <div class="flex justify-around mt-4 mb-3">
-                        {{-- {{ dd($recipe->likes_count) }} --}}
-                        @if (!$recipe->isLikedBy(Auth::user()))
-                            <span class="likes">
-                                <i class="fa-regular fa-thumbs-up text-xl like-toggle" data-recipe-id="{{ $recipe->id }}"></i>
-                            <span class="like-counter">{{$recipe->likes_count}}</span>
-                            </span><!-- /.likes -->
-                        @else
-                            <span class="likes">
-                                <i class="fa-solid fa-thumbs-up text-xl heart like-toggle liked" data-recipe-id="{{ $recipe->id }}"></i>
-                            <span class="like-counter">{{$recipe->likes_count}}</span>
-                            </span><!-- /.likes -->
-                        @endif
-
-
-                        <form action="{{ route('comment') }}" method="get">
-                            <input type="hidden" name="user_id" value="{{ $recipe->user->id }}">
-                            <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
-                            <button class="comment-btn">
-                                <i class="fa-regular fa-comment-dots text-xl"></i>
-                            </button>
-                        </form>                        
+                        </div>
                     </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        @endif
     </div>
 </x-app-layout>

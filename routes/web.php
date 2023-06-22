@@ -65,19 +65,13 @@ Route::get('/recipe_edit/{recipe}', [RecipeController::class, 'recipeEdit'])->na
 Route::post('/recipe_edit_upload', [RecipeController::class, 'recipeEditUp'])->name('recipe_edit_upload');
 
 //投稿削除ページ
-Route::get('/recipe_del_conf/{recipe}', [RecipeController::class, 'recipeDelConf'])->name('recipe_del_conf');
+// Route::get('/recipe_del_conf/{recipe}', [RecipeController::class, 'recipeDelConf'])->name('recipe_del_conf');
 
 //投稿削除実行
 Route::get('/recipe_del/{recipe}', [RecipeController::class, 'recipeDel'])->name('recipe_del');
 
-//コメント削除ページ
-Route::get('/comment_del_conf/{comment}', [CommentController::class, 'commentDelConf'])->name('comment_del_conf');
-
 //コメント削除実行
 Route::get('/comment_del/{comment}', [CommentController::class, 'commentDel'])->name('comment_del');
-
-//ユーザー削除確認ページ
-Route::get('/user_del_conf/{user}', [UserController::class, 'userDelConf'])->name('user_del_conf');
 
 //ユーザー削除実行
 Route::get('/user_del/{user}', [UserController::class, 'userDel'])->name('user_del');
@@ -89,6 +83,18 @@ Route::get('/register_admin_form', function () {
 
 //管理者追加
 Route::post('/regist_admin', [UserController::class, 'adminRegister'])->name('regist_admin');
+
+//ジャンル追加画面
+Route::get('/jenre_addition_form', [JenreController::class, 'jenreAdditionForm'])->name('jenre_addition_form');
+
+//ジャンル追加実行
+Route::get('/jenre_addition', [JenreController::class, 'jenreAddition'])->name('jenre_addition');
+
+//ジャンル削除実行
+Route::get('/jenre_del/{jenre}', [JenreController::class, 'jenreDel'])->name('jenre_del');
+
+//タグ追加
+// Route::get('/tag_addition');
 
 
 //いいね機能

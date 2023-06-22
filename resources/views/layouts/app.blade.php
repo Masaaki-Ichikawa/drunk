@@ -46,5 +46,6 @@
         <script src="/js/recipe.js"></script>
         <script src="/js/like.js"></script>
         <script src="/js/new_recipe.js"></script>
+        <script src="/js/jenre.js"></script>
     </body>
 </html>

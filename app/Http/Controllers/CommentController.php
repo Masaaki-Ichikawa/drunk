@@ -24,12 +24,6 @@ class CommentController extends Controller
         return redirect()->route('recipe_detail', ['recipe_id' => $request->recipe_id]);
     }
 
-    //コメント削除確認
-    public function commentDelConf(Comment $comment)
-    {
-        return view('comment_del_conf', ['comment' => $comment]);
-    }
-
 
     //コメント削除実行
     public function commentDel(Comment $comment) 
