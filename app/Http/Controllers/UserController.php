@@ -29,13 +29,6 @@ class UserController extends Controller
     }
 
 
-    //ユーザー削除確認ページ
-    public function userDelConf(User $user)
-    {
-        return view('user_del_conf', ['user' => $user]);
-    }
-
-
     //ユーザー削除実行
     public function userDel(User $user)
     {
