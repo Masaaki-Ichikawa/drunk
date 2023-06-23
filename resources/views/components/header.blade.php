@@ -1,4 +1,4 @@
-<div class="font-semibold text-xl text-gray-800 leading-tight bg-black flex justify-center">
+<div class="font-semibold text-gray-800 leading-tight flex justify-center">
     <span class="neon-title flash">d<span>d</span></span>
     <span class="neon-title flash">r<span>r</span></span>
     <span class="neon-title flash">u<span>u</span></span>

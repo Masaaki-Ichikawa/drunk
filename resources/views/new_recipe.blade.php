@@ -35,12 +35,12 @@
             @foreach ($jenres as $jenre)
                 <div class="mb-2">
                     <input type="radio" class="hidden peer" name="jenre_id" id="{{ $jenre->jenre }}" value="{{ $jenre->id }}" />
-                    <label for="{{ $jenre->jenre }}" class="mx-1 p-1 border border-gray-300 rounded peer-checked:bg-green-500 peer-checked:text-gray-50 ">{{ $jenre->jenre }}</label>
+                    <label for="{{ $jenre->jenre }}" class="mx-1 p-1 border border-gray-300 rounded bg-white peer-checked:bg-fuchsia-500 peer-checked:text-gray-50 ">{{ $jenre->jenre }}</label>
                 </div>
             @endforeach           
         </div>
 
-        <button class="px-10 py-2 mt-10 bg-white border border-gray-300 rounded">投稿</button>
+        <button class="font-bold px-10 py-2 mt-10 bg-white border border-gray-300 rounded">投稿</button>
     </form>
    
 </x-app-layout>

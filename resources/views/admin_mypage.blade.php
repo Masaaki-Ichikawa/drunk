@@ -11,7 +11,7 @@
     <div class="py-6 flex justify-end">
         <div class="w-1/2 mr-4 flex justify-between">
             <p class="font-bold text-2xl">管理者</p>
-            <a href="#user" class="px-2">ユーザー</a>
+            <a href="#user" class="px-2 font-bold">ユーザー</a>
         </div>
     </div>
     
@@ -29,7 +29,7 @@
                     <p>メール：{{ $admin->email }}</p>
                     <p>権限：{{ $admin->role }}</p>
                 <div class="my-2 flex justify-between">
-                    <a class="px-1 bg-white border border-gray-300 rounded" href="{{ route('user_recipes', ['user_id' => $admin->id, 'user_name' => $admin->name]) }}">投稿一覧</a>
+                    <a class="font-bold px-2 bg-white border border-gray-300 rounded" href="{{ route('user_recipes', ['user_id' => $admin->id, 'user_name' => $admin->name]) }}">投稿一覧</a>
                     <a class="text-red-600" href="{{ route('user_del', $admin->id) }}" onclick="return delConf()">削除</a>
                 </div>                
             </div>
@@ -41,7 +41,7 @@
     <div id="user" class="pb-6 pt-24 flex justify-end">
         <div class="w-1/2 mr-4 flex justify-between">
             <p class="font-bold text-2xl">ユーザー</p>
-            <a href="#recipe" class="px-2">管理者</a>
+            <a href="#recipe" class="font-bold px-2">管理者</a>
         </div>
     </div>
 
@@ -59,7 +59,7 @@
                     <p>メール：{{ $user->email }}</p>
                     <p>権限：{{ $user->role }}</p>
                 <div class="my-2 flex justify-between">
-                    <a class="px-1 bg-white border border-gray-300 rounded" href="{{ route('user_recipes', ['user_id' => $user->id, 'user_name' => $user->name]) }}">投稿一覧</a>
+                    <a class="font-bold px-2 bg-white border border-gray-300 rounded" href="{{ route('user_recipes', ['user_id' => $user->id, 'user_name' => $user->name]) }}">投稿一覧</a>
                     <a class="text-red-600" href="{{ route('user_del', $user->id) }}" onclick="return delConf()">削除</a>
                 </div>                
             </div>

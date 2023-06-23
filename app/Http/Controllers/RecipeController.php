@@ -186,7 +186,7 @@ class RecipeController extends Controller
     {
         if (isset($request->jenre_id)) {
             if (Recipe::where('jenre_id', $request->jenre_id)->exists()) {
-                $recipes = Recipe::withCount('likes')->with('user')->where('jenre_id', $request->jenre_id)->latest()->orderBy('likes_count', 'desc')->orderBy('created_at', 'desc')->get();
+                $recipes = Recipe::withCount('likes')->with('user')->where('jenre_id', $request->jenre_id)->orderBy('likes_count', 'desc')->orderBy('created_at', 'desc')->get();
             }else {
                 $recipes = null;
             }

@@ -9,8 +9,8 @@
 
     <div class="pt-6 pb-3 flex justify-end border border-b-gray-300">
         <div class="w-1/2 mr-4 flex justify-between">
-            <p class="text-xl">レシピ</p>
-            <a href="#comment" class="border border-gray-400 rounded px-2">コメント一覧</a>
+            <p class="text-xl font-bold">レシピ</p>
+            <a href="#comment" class="font-bold border border-gray-400 rounded px-2">コメント一覧</a>
         </div>
     </div>
 
@@ -43,7 +43,7 @@
                                 </span><!-- /.likes -->
                             @else
                                 <span class="likes">
-                                    <i class="fa-solid fa-thumbs-up text-xl like-toggle liked" data-recipe-id="{{ $recipe->id }}"></i>
+                                    <i class="fa-regular fa-thumbs-up text-xl like-toggle liked" data-recipe-id="{{ $recipe->id }}"></i>
                                 <span class="like-counter">{{$recipe->likes_count}}</span>
                                 </span><!-- /.likes -->
                             @endif
@@ -68,8 +68,8 @@
 
     <div id="comment" class="pb-3 pt-24 flex justify-end border-b border-gray-300">
         <div class="w-1/2 mr-4 flex justify-between">
-            <p class="text-xl">コメント</p>
-            <a href="#recipe" class="border border-gray-400 rounded px-2">レシピ一覧</a>
+            <p class="text-xl font-bold">コメント</p>
+            <a href="#recipe" class="font-bold border border-gray-400 rounded px-2">レシピ一覧</a>
         </div>
     </div>
 

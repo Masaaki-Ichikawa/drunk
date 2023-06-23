@@ -5,7 +5,7 @@
             <p class="text-red-500">{{ $message }}</p>
         @enderror
         <input class="w-full border border-gray-300 rounded" type="text" name="jenre" placeholder="ジャンル名" value="{{ old('jenre') }}">
-        <button class="text-xl px-3 py- mt-6 mx-auto bg-white border border-gray-300 rounded">追加</button>
+        <button class="font-bold px-4 py-1 mt-6 mx-auto bg-white border border-gray-300 rounded">追加</button>
     </form>
 
     <div class="w-11/12 mx-auto py-2 mt-12 border border-gray-300 rounded bg-white">
