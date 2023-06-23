@@ -6,33 +6,33 @@
             <div class="w-11/12 mx-auto flex flex-wrap">
                 @if ($request === null)
                     @foreach ($jenres as $jenre)
-                        <form class="mb-2" action="{{ route('dashboard') }}" method="get">
+                        <form class="mb-2" action="{{ route('rank') }}" method="get">
                             @csrf
                             <input type="hidden" name="jenre_id" id="{{ $jenre->jenre }}" value="{{ $jenre->id }}" />
-                            <button class="mx-1 px-1 border border-gray-300 rounded">{{ $jenre->jenre }}</button>
+                            <button class="mx-1 px-1 border border-gray-300 rounded bg-white">{{ $jenre->jenre }}</button>
                         </form>
                     @endforeach
-                        <form class="mb-2" action="{{ route('dashboard') }}" method="get">
+                        <form class="mb-2" action="{{ route('rank') }}" method="get">
                             <input type="radio" class="hidden peer" name="jenre_id" id="all" value="all" />
-                            <button class="mx-1 px-1 border border-gray-300 rounded bg-green-500 text-gray-50">すべて</button>
+                            <button class="mx-1 px-1 border border-gray-300 rounded bg-fuchsia-500 text-gray-50">すべて</button>
                         </form>
                 @else
                     @foreach ($jenres as $jenre)
-                        <form class="mb-2" action="{{ route('dashboard') }}" method="get">
+                        <form class="mb-2" action="{{ route('rank') }}" method="get">
                             @csrf
                             @if ($request->jenre_id == $jenre->id)
                                 <input type="hidden" name="jenre_id" id="{{ $jenre->jenre }}" value="{{ $jenre->id }}" />
-                                <button class="mx-1 px-1 border border-gray-300 rounded bg-green-500 text-gray-50">{{ $jenre->jenre }}</button>
+                                <button class="mx-1 px-1 border border-gray-300 rounded bg-fuchsia-500 text-gray-50">{{ $jenre->jenre }}</button>
                             @else
                                 <input type="hidden" name="jenre_id" id="{{ $jenre->jenre }}" value="{{ $jenre->id }}" />
-                                <button class="mx-1 px-1 border border-gray-300 rounded">{{ $jenre->jenre }}</button>
+                                <button class="mx-1 px-1 border border-gray-300 rounded bg-white">{{ $jenre->jenre }}</button>
                             @endif
                             
                         </form>
                     @endforeach
-                        <form class="mb-2" action="{{ route('dashboard') }}" method="get">
+                        <form class="mb-2" action="{{ route('rank') }}" method="get">
                             <input type="radio" class="hidden peer" name="jenre_id" id="all" value="all" />
-                            <button class="mx-1 px-1 border border-gray-300 rounded">すべて</button>
+                            <button class="mx-1 px-1 border border-gray-300 rounded bg-white">すべて</button>
                         </form>                    
                 @endif
             </div>
@@ -68,7 +68,7 @@
                                 </span><!-- /.likes -->
                             @else
                                 <span class="likes">
-                                    <i class="fa-solid fa-thumbs-up text-xl heart like-toggle liked" data-recipe-id="{{ $recipe->id }}"></i>
+                                    <i class="fa-regular fa-thumbs-up text-xl like-toggle liked" data-recipe-id="{{ $recipe->id }}"></i>
                                 <span class="like-counter">{{$recipe->likes_count}}</span>
                                 </span><!-- /.likes -->
                             @endif

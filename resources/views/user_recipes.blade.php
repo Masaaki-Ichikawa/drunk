@@ -28,7 +28,7 @@
                                 </span><!-- /.likes -->
                             @else
                                 <span class="likes">
-                                    <i class="fa-solid fa-thumbs-up text-xl like-toggle liked" data-recipe-id="{{ $user_recipe->id }}"></i>
+                                    <i class="fa-regular fa-thumbs-up text-xl like-toggle liked" data-recipe-id="{{ $user_recipe->id }}"></i>
                                 <span class="like-counter">{{$user_recipe->likes_count}}</span>
                                 </span><!-- /.likes -->
                             @endif
