@@ -17,7 +17,7 @@
     </head>
     <body class="font-sans text-gray-900 antialiased">
         <div class="flex flex-col sm:justify-center items-center pt-6 sm:pt-0 mt-40">
-            <div>
+            <div class="mb-4">
                 <span class="neon-title flash">d<span>d</span></span>
                 <span class="neon-title flash">r<span>r</span></span>
                 <span class="neon-title flash">u<span>u</span></span>

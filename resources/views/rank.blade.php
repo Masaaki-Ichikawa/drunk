@@ -60,7 +60,6 @@
                         
 
                         <div class="flex justify-around mt-4 mb-3">
-                            {{-- {{ dd($recipe->likes_count) }} --}}
                             @if (!$recipe->isLikedBy(Auth::user()))
                                 <span class="likes">
                                     <i class="fa-regular fa-thumbs-up text-xl like-toggle" data-recipe-id="{{ $recipe->id }}"></i>

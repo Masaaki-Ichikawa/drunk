@@ -2,39 +2,48 @@
     <div class="mt-10">
         {{-- ジャンルボタン --}}
         <div class="pb-2 border-b border-gray-400">
-            <div class="w-11/12 mx-auto flex flex-wrap">
+            <div class="w-11/12 mx-auto">
+                    <form action="{{ route('dashboard') }}" method="get">
+                        @csrf
+                        <div class="flex justify-between mb-4">
+                            <input class="h-8 w-9/12 border rounded" type="text" name="keyword" placeholder="レシピ名" value="@if (isset($request->keyword)){{ $request->keyword }}@endif">
+                            <button class="w-2/12 font-bold border border-gray-300 rounded bg-white">検索</button>
+                        </div>
 
-                @if ($request === null)
-                    @foreach ($jenres as $jenre)
-                        <form class="mb-2" action="{{ route('dashboard') }}" method="get">
-                            @csrf
-                            <input type="hidden" name="jenre_id" id="{{ $jenre->jenre }}" value="{{ $jenre->id }}" />
-                            <button class="mx-1 px-1 border border-gray-300 rounded bg-white">{{ $jenre->jenre }}</button>
-                        </form>
-                    @endforeach
-                        <form class="mb-2" action="{{ route('dashboard') }}" method="get">
-                            <input type="radio" class="hidden peer" name="jenre_id" id="all" value="all" />
-                            <button class="mx-1 px-1 border border-gray-300 rounded bg-fuchsia-500 text-gray-50">すべて</button>
-                        </form>
-                @else
-                    @foreach ($jenres as $jenre)
-                        <form class="mb-2" action="{{ route('dashboard') }}" method="get">
-                            @csrf
-                            @if ($request->jenre_id == $jenre->id)
-                                <input type="hidden" name="jenre_id" id="{{ $jenre->jenre }}" value="{{ $jenre->id }}" />
-                                <button class="mx-1 px-1 border border-gray-300 rounded bg-fuchsia-500 text-gray-50">{{ $jenre->jenre }}</button>
+                        <div class="mx-auto flex flex-wrap">
+                            @if ($request === null || $request->jenre_id === null)
+                                @foreach ($jenres as $jenre)
+                                <div class="mb-2">
+                                    <input type="radio" class="hidden" name="jenre_id" id="{{ $jenre->jenre }}" value="{{ $jenre->id }}" />
+                                    <label for="{{ $jenre->jenre }}" class="jenre-btn mx-1 p-1 border border-gray-300 rounded">{{ $jenre->jenre }}</label>
+                                </div>
+                                @endforeach
+                                <div class="mb-2">
+                                    <input type="radio" class="hidden" name="jenre_id" id="all" value="" checked />
+                                    <label for="all" class="jenre-btn jenre-active mx-1 p-1 border border-gray-300 rounded">すべて</label>
+                                </div>
                             @else
-                                <input type="hidden" name="jenre_id" id="{{ $jenre->jenre }}" value="{{ $jenre->id }}" />
-                                <button class="mx-1 px-1 border border-gray-300 rounded bg-white">{{ $jenre->jenre }}</button>
+                                @foreach ($jenres as $jenre)
+                                    @if ($request->jenre_id == $jenre->id)
+                                        <div class="mb-2">
+                                            <input type="radio" class="hidden" name="jenre_id" id="{{ $jenre->jenre }}" value="{{ $jenre->id }}" checked />
+                                            <label for="{{ $jenre->jenre }}" class="jenre-btn jenre-active mx-1 p-1 border border-gray-300 rounded">{{ $jenre->jenre }}</label>
+                                        </div>
+                                    @else
+                                        <div class="mb-2">
+                                            <input type="radio" class="hidden" name="jenre_id" id="{{ $jenre->jenre }}" value="{{ $jenre->id }}" />
+                                            <label for="{{ $jenre->jenre }}" class="jenre-btn mx-1 p-1 border border-gray-300 rounded">{{ $jenre->jenre }}</label>
+                                        </div>
+                                    @endif
+                                @endforeach
+                                <div class="mb-2">
+                                    <input type="radio" class="hidden" name="jenre_id" id="all" value=""/>
+                                    <label for="all" class="jenre-btn mx-1 p-1 border border-gray-300 rounded">すべて</label>
+                                </div>
                             @endif
-                            
-                        </form>
-                    @endforeach
-                        <form class="mb-2" action="{{ route('dashboard') }}" method="get">
-                            <input type="radio" class="hidden peer" name="jenre_id" id="all" value="all" />
-                            <button class="mx-1 px-1 border border-gray-300 rounded bg-white">すべて</button>
-                        </form>                    
-                @endif
+                        </div>
+                    </form>
+                
                 
             </div>
         </div>

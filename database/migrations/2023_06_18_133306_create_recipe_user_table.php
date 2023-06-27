@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('likes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable(false)->constrained()->onDelete('cascade');
-            $table->foreignId('recipe_id')->nullable(false)->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->nullable(false)->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('recipe_id')->nullable(false)->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
 
             $table->unique(['user_id', 'recipe_id']);

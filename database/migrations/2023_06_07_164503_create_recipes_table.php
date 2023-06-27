@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('recipe', 500)->nullable(false);
             $table->string('image_path', 100);
             $table->foreignId('jenre_id')->nullable(false)->constrained();
-            $table->foreignId('tag_id')->nullable(false)->constrained();
-            $table->foreignId('user_id')->nullable(false)->constrained()->onDelete('cascade');
+            // $table->foreignId('tag_id')->nullable(false)->constrained();
+            $table->foreignId('user_id')->nullable(false)->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
