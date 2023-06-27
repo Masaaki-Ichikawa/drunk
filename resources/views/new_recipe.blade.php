@@ -34,7 +34,7 @@
         <div class="radiobox w-11/12 mx-auto flex flex-wrap">
             @foreach ($jenres as $jenre)
                 <div class="mb-2">
-                    <input type="radio" class="hidden peer" name="jenre_id" id="{{ $jenre->jenre }}" value="{{ $jenre->id }}" />
+                    <input type="radio" class="hidden peer" name="jenre_id" id="{{ $jenre->jenre }}" value="{{ $jenre->id }}" {{ old('jenre_id') ==  $jenre->id ? 'checked' : ''}} />
                     <label for="{{ $jenre->jenre }}" class="mx-1 p-1 border border-gray-300 rounded bg-white peer-checked:bg-fuchsia-500 peer-checked:text-gray-50 ">{{ $jenre->jenre }}</label>
                 </div>
             @endforeach           
