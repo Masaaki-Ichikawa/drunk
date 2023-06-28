@@ -36,6 +36,7 @@
                                         </div>
                                     @endif
                                 @endforeach
+                                
                                 <div class="mb-2">
                                     <input type="radio" class="hidden" name="jenre_id" id="all" value=""/>
                                     <label for="all" class="jenre-btn mx-1 p-1 border border-gray-300 rounded">すべて</label>

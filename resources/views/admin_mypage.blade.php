@@ -8,63 +8,63 @@
         </form>
     </div>
 
-    <div class="py-6 flex justify-end">
-        <div class="w-1/2 mr-4 flex justify-between">
-            <p class="font-bold text-2xl">管理者</p>
-            <a href="#user" class="px-2 font-bold">ユーザー</a>
+    <p id="tabcontrol" class="flex justify-around mt-8 mb-6">
+        <a href="#admins" class="font-bold text-xl">管理者</a>
+        <a href="#users" class="font-bold text-xl">ユーザー</a>
+    </p>
+
+    <div id="tabbody">
+        {{-- 管理者一覧 --}}
+        <div id="admins" class="tab">
+            @foreach ($users_admin as $admin)
+            <div class="w-full border-b border-gray-300">
+                {{-- アカウント名、時間 --}}
+                <div class="w-11/12 mx-auto mt-1">
+                    <div class="flex">
+                        <a class="text-xl" href="">{{ $admin->name }}</a>
+                        {{-- <a class="text-sm mt-1 pl-1" href="">{{ $admin->created_at }}</a> --}}
+                    </div>
+
+                    {{-- ユーザー --}}
+                    <div class="ml-4">
+                            <p>メール：{{ $admin->email }}</p>
+                            <p>権限：{{ $admin->role }}</p>
+                        <div class="my-2 flex justify-between">
+                            <a class="font-bold px-2 bg-white border border-gray-300 rounded" href="{{ route('user_recipes', ['user_id' => $admin->id, 'user_name' => $admin->name]) }}">投稿一覧</a>
+                            <a class="text-red-600" href="{{ route('user_del', $admin->id) }}" onclick="return delConf()">削除</a>
+                        </div>                
+                    </div>                       
+                </div>
+            </div>
+            @endforeach
+        </div>
+
+        {{-- ユーザー一覧 --}}
+        <div id="users" class="tab">
+            @foreach ($users_user as $user)
+            <div class="w-full border-b border-gray-300">
+                {{-- アカウント名、時間 --}}
+                <div class="w-11/12 mx-auto mt-1">
+                    <div class="flex">
+                        <a class="text-xl" href="">{{ $user->name }}</a>
+                        {{-- <a class="text-sm mt-1 pl-1" href="">{{ $user->created_at }}</a> --}}
+                    </div>
+
+                    {{-- ユーザー --}}
+                    <div class="ml-4">
+                            <p>メール：{{ $user->email }}</p>
+                            <p>権限：{{ $user->role }}</p>
+                        <div class="my-2 flex justify-between">
+                            <a class="font-bold px-2 bg-white border border-gray-300 rounded" href="{{ route('user_recipes', ['user_id' => $user->id, 'user_name' => $user->name]) }}">投稿一覧</a>
+                            <a class="text-red-600" href="{{ route('user_del', $user->id) }}" onclick="return delConf()">削除</a>
+                        </div>                
+                    </div>
+                        
+                </div>
+            </div>
+            @endforeach
         </div>
     </div>
+
     
-    @foreach ($users_admin as $admin)
-    <div class="w-full border-b border-gray-300">
-        {{-- アカウント名、時間 --}}
-        <div class="w-11/12 mx-auto mt-1">
-            <div class="flex">
-                <a class="text-xl" href="">{{ $admin->name }}</a>
-                {{-- <a class="text-sm mt-1 pl-1" href="">{{ $admin->created_at }}</a> --}}
-            </div>
-
-            {{-- ユーザー --}}
-            <div class="ml-4">
-                    <p>メール：{{ $admin->email }}</p>
-                    <p>権限：{{ $admin->role }}</p>
-                <div class="my-2 flex justify-between">
-                    <a class="font-bold px-2 bg-white border border-gray-300 rounded" href="{{ route('user_recipes', ['user_id' => $admin->id, 'user_name' => $admin->name]) }}">投稿一覧</a>
-                    <a class="text-red-600" href="{{ route('user_del', $admin->id) }}" onclick="return delConf()">削除</a>
-                </div>                
-            </div>
-                
-        </div>
-    </div>
-    @endforeach
-
-    <div id="user" class="pb-6 pt-24 flex justify-end">
-        <div class="w-1/2 mr-4 flex justify-between">
-            <p class="font-bold text-2xl">ユーザー</p>
-            <a href="#recipe" class="font-bold px-2">管理者</a>
-        </div>
-    </div>
-
-    @foreach ($users_user as $user)
-    <div class="w-full border-b border-gray-300">
-        {{-- アカウント名、時間 --}}
-        <div class="w-11/12 mx-auto mt-1">
-            <div class="flex">
-                <a class="text-xl" href="">{{ $user->name }}</a>
-                {{-- <a class="text-sm mt-1 pl-1" href="">{{ $user->created_at }}</a> --}}
-            </div>
-
-            {{-- ユーザー --}}
-            <div class="ml-4">
-                    <p>メール：{{ $user->email }}</p>
-                    <p>権限：{{ $user->role }}</p>
-                <div class="my-2 flex justify-between">
-                    <a class="font-bold px-2 bg-white border border-gray-300 rounded" href="{{ route('user_recipes', ['user_id' => $user->id, 'user_name' => $user->name]) }}">投稿一覧</a>
-                    <a class="text-red-600" href="{{ route('user_del', $user->id) }}" onclick="return delConf()">削除</a>
-                </div>                
-            </div>
-                
-        </div>
-    </div>
-    @endforeach
 </x-app-layout>
