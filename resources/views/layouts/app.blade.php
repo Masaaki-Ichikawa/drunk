@@ -23,8 +23,8 @@
         <div class="min-h-screen bg-gray-100">
 
             <!-- Page Heading -->
-                <header class="header bg-black w-full fixed z-50">
-                    <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+                <header class="header h-16 w-full fixed z-50">
+                    <div class="mx-auto py-2 sm:px-6 lg:px-8">
                         @include('components.header')
                     </div>
                 </header>
@@ -44,7 +44,8 @@
         
         <script src="/js/footer.js"></script>
         <script src="/js/recipe.js"></script>
-        <script src="/js/dashbord.js"></script>
+        <script src="/js/like.js"></script>
         <script src="/js/new_recipe.js"></script>
+        <script src="/js/jenre.js"></script>
     </body>
 </html>

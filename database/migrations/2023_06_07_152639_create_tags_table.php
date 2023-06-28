@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jenres', function (Blueprint $table) {
-            $table->id();
-            $table->string('jenre', 20);
-        });
+        // Schema::create('tags', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('tag', 20);
+        // });
     }
 
     /**
@@ -22,7 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('recipes');
-        Schema::dropIfExists('jenres');
+        Schema::dropIfExists('tags');
     }
 };
