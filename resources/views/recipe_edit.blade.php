@@ -9,7 +9,7 @@
         @if ($errors->has('name'))
             <p class="text-red-500">{{ $errors->first('name') }}</p>
         @endif
-        <input class="w-11/12 border-gray-300 rounded" name="name" type="text" value="{{ $recipe->name }}">
+        <input class="w-11/12 border-gray-300 rounded" name="name" type="text" value="{{ old('name', $recipe->name) }}">
 
         <label for="image" class="text-xl mt-6">画像選択</label>
         @if ($errors->has('image'))
@@ -27,7 +27,7 @@
         @if ($errors->has('recipe'))
             <p class="text-red-500">{{ $errors->first('recipe') }}</p>
         @endif
-        <textarea id="recipe" class="w-11/12 border-gray-300 resize-none rounded" name="recipe" cols="30" rows="20">{{ $recipe->recipe }}</textarea>
+        <textarea id="recipe" class="w-11/12 border-gray-300 resize-none rounded" name="recipe" cols="30" rows="20">{{ old('recipe', $recipe->recipe) }}</textarea>
 
         <p class="text-xl pt-8">ジャンル選択</p>
         @if ($errors->has('jenre_id'))
@@ -36,7 +36,7 @@
         <div class="radiobox w-11/12 mx-auto flex flex-wrap">
             @foreach ($jenres as $jenre)
                 <div class="mb-2">
-                    <input type="radio" class="hidden peer" name="jenre_id" id="{{ $jenre->jenre }}" value="{{ $jenre->id }}" />
+                    <input type="radio" class="hidden peer" name="jenre_id" id="{{ $jenre->jenre }}" value="{{ $jenre->id }}" {{ old('jenre_id', $recipe->jenre->id) ==  $jenre->id ? 'checked' : ''}} />
                     <label for="{{ $jenre->jenre }}" class="mx-1 p-1 border border-gray-300 rounded bg-white peer-checked:bg-fuchsia-500 peer-checked:text-gray-50 ">{{ $jenre->jenre }}</label>
                 </div>
             @endforeach           

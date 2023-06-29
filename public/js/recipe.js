@@ -35,3 +35,10 @@ for (let i = 0; i < tabs.length; i++) {
 //最初は先頭のタブを選択しておく
 tabs[0].onclick();
 
+
+//削除確認
+function delConf() {
+    if (!confirm('削除しますか？')) {
+        return false;
+    }
+}
