@@ -64,9 +64,6 @@ Route::get('/recipe_edit/{recipe}', [RecipeController::class, 'recipeEdit'])->na
 //投稿編集アップロード
 Route::post('/recipe_edit_upload', [RecipeController::class, 'recipeEditUp'])->name('recipe_edit_upload');
 
-//投稿削除ページ
-// Route::get('/recipe_del_conf/{recipe}', [RecipeController::class, 'recipeDelConf'])->name('recipe_del_conf');
-
 //投稿削除実行
 Route::get('/recipe_del/{recipe}', [RecipeController::class, 'recipeDel'])->name('recipe_del');
 
