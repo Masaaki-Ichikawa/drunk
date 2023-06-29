@@ -171,7 +171,7 @@ class RecipeController extends Controller
         //バリデーション
         $request->validate([
             'name' => 'required|max:30',
-            'recipe' => 'required | max:300',
+            'recipe' => 'required | max:500',
             'image' => 'required',
             'jenre_id' => 'required',
         ], [
