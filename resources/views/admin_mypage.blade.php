@@ -26,14 +26,16 @@
                     </div>
 
                     {{-- ユーザー --}}
-                    <div class="ml-4">
+                    <div class="ml-4 flex justify-between">
+                        <div>
                             <p>メール：{{ $admin->email }}</p>
                             <p>権限：{{ $admin->role }}</p>
+                        </div>
+                            
                         <div class="my-2 flex justify-between">
-                            <a class="font-bold px-2 bg-white border border-gray-300 rounded" href="{{ route('user_recipes', ['user_id' => $admin->id, 'user_name' => $admin->name]) }}">投稿一覧</a>
                             <a class="text-red-600" href="{{ route('user_del', $admin->id) }}" onclick="return delConf()">削除</a>
                         </div>                
-                    </div>                       
+                    </div>                         
                 </div>
             </div>
             @endforeach
