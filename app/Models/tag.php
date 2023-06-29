@@ -5,14 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Jenre extends Model
+class tag extends Model
 {
     use HasFactory;
-
-    protected $table = 'jenres';
-    public $timestamps = false;
-
-    protected $fillable = [
-        'jenre'
-    ];
 }

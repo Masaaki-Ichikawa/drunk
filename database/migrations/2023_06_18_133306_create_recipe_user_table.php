@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('recipes', function (Blueprint $table) {
-            $table->id()->unique();
-            $table->string('name', 30)->nullable(false);
-            $table->string('recipe', 500)->nullable(false);
-            $table->string('image_path', 100);
-            $table->foreignId('jenre_id')->nullable(false)->constrained();
-            // $table->foreignId('tag_id')->nullable(false)->constrained();
+        Schema::create('likes', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('user_id')->nullable(false)->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('recipe_id')->nullable(false)->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
+
+            $table->unique(['user_id', 'recipe_id']);
         });
     }
 
@@ -28,7 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Schema::dropIfExists('comments');
-        Schema::dropIfExists('recipes');
+        Schema::dropIfExists('likes');
     }
 };

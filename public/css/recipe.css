@@ -4,3 +4,33 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
 }
+
+.liked {
+    color: rgb(255, 217, 0);
+}
+
+
+/* マイページのタブ切り替え */
+#tabcontrol a {
+    display: inline-block;            /* インラインブロック化 */
+    position: relative;               /* JavaScriptでz-indexを調整するために必要 */
+ }
+
+
+ #tabbody div {
+    position: relative;      /* z-indexを調整するために必要 */
+    z-index: 0;              /* 重なり順序を「最も背面」にするため */
+ }
+
+
+ .jenre-btn {
+    background-color: white;
+ }
+
+.jenre-active {
+    background-color: rgb(191, 0, 220);
+    color: white;
+}
+
+
+

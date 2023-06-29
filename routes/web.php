@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\JenreController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,7 +38,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 // マイページ
-Route::get('/user_mypage', [RecipeController::class, 'showMyRecipes'])->name('user_mypage');
+Route::get('/user_mypage', [RecipeController::class, 'showMypage'])->name('user_mypage');
 
 //ほかのユーザーの投稿一覧
 Route::get('/user_recipes', [RecipeController::class, 'showUserRecipes'])->name('user_recipes');
@@ -62,14 +64,38 @@ Route::get('/recipe_edit/{recipe}', [RecipeController::class, 'recipeEdit'])->na
 //投稿編集アップロード
 Route::post('/recipe_edit_upload', [RecipeController::class, 'recipeEditUp'])->name('recipe_edit_upload');
 
-//投稿削除ページ
-Route::get('/recipe_del_conf/{recipe}', [RecipeController::class, 'recipeDelConf'])->name('recipe_del_conf');
-
 //投稿削除実行
 Route::get('/recipe_del/{recipe}', [RecipeController::class, 'recipeDel'])->name('recipe_del');
 
-//コメント削除ページ
-Route::get('/comment_del_conf/{comment}', [CommentController::class, 'commentDelConf'])->name('comment_del_conf');
-
 //コメント削除実行
 Route::get('/comment_del/{comment}', [CommentController::class, 'commentDel'])->name('comment_del');
+
+//ユーザー削除実行
+Route::get('/user_del/{user}', [UserController::class, 'userDel'])->name('user_del');
+
+//管理者追加フォーム
+Route::get('/register_admin_form', function () {
+    return view('register_admin_form');
+})->name('register_admin_form');
+
+//管理者追加
+Route::post('/regist_admin', [UserController::class, 'adminRegister'])->name('regist_admin');
+
+//ジャンル追加画面
+Route::get('/jenre_addition_form', [JenreController::class, 'jenreAdditionForm'])->name('jenre_addition_form');
+
+//ジャンル追加実行
+Route::get('/jenre_addition', [JenreController::class, 'jenreAddition'])->name('jenre_addition');
+
+//ジャンル削除実行
+Route::get('/jenre_del/{jenre}', [JenreController::class, 'jenreDel'])->name('jenre_del');
+
+//タグ追加
+// Route::get('/tag_addition');
+
+
+//いいね機能
+Route::post('/like', [LikeController::class, 'like'])->name('recipes.like');
+
+//いいねランキングページ
+Route::get('/rank', [RecipeController::class, 'rank'])->name('rank');

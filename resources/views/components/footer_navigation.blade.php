@@ -3,7 +3,7 @@
         <i class="icon glass fa-solid fa-martini-glass"></i>
     </a>
 
-    <a class="m-auto" href="">
+    <a class="m-auto" href="{{ route('rank') }}">
         <i class="icon crown fa-solid fa-crown"></i>
     </a>
 
