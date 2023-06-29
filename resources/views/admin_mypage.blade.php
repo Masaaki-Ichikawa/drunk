@@ -35,7 +35,7 @@
                         <div class="my-2 flex justify-between">
                             <a class="text-red-600" href="{{ route('user_del', $admin->id) }}" onclick="return delConf()">削除</a>
                         </div>                
-                    </div>                       
+                    </div>                         
                 </div>
             </div>
             @endforeach
