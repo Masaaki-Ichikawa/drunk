@@ -8,6 +8,7 @@ use App\Models\Like;
 use Illuminate\Http\Request;
 use App\Models\Recipe;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class RecipeController extends Controller
@@ -204,8 +205,15 @@ class RecipeController extends Controller
     //レシピ削除実行
     public function recipeDel(Recipe $recipe) 
     {
+        // dd(Auth::user()->role);
         $recipe->delete();
-        return redirect('user_mypage');
+
+        if (Auth::user()->role === 'user') {
+            return redirect('user_mypage');
+        } else {
+            return redirect('dashboard');
+        }
+        
     }
 
 
