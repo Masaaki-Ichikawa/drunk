@@ -91,7 +91,11 @@
                                 <button class="comment-btn">
                                     <i class="fa-regular fa-comment-dots text-xl"></i>
                                 </button>
-                            </form>                        
+                            </form>
+                            
+                            @if (Auth::user()->role === 'admin')
+                                <a href="{{ route('recipe_del', $recipe->id) }}" onclick="return delConf()"><i class="fa-regular fa-trash-can"></i></a>                  
+                            @endif
                         </div>
                     </div>
                 </div>

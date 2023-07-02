@@ -8,6 +8,10 @@
                 <p for="recipe" class="w-11/12 text-lg pt-8 mx-6">{!! nl2br( $recipe_detail->recipe) !!}</p>
 
                 <a class="font-bold text-md mt-8" href="{{ route('user_recipes', ['user_id' => $recipe_detail->user->id, 'user_name' => $recipe_detail->user->name]) }}">{{ $recipe_detail->user->name }}さんのレシピ一覧へ</a>
+
+                @if (Auth::user()->role === 'admin')
+                    <a href="{{ route('recipe_del', $recipe_detail->id) }}" onclick="return delConf()"><i class="fa-regular fa-trash-can"></i></a>                  
+                @endif
             </div>
 
             
@@ -18,6 +22,11 @@
                         <a class="font-medium text-gray-500" href="{{ route('user_recipes', ['user_id' => $comment->user->id, 'user_name' => $comment->user->name]) }}">{{ $comment->user->name }}</a>
                     </div>
                     <p class="ml-6">{!! nl2br( $comment->comment) !!}</p>
+                    @if (Auth::user()->role === 'admin')
+                        <div class="flex justify-around mt-4 mb-3">
+                            <a href="{{ route('comment_del', $comment->id) }}" onclick="return delConf()"><i class="fa-regular fa-trash-can"></i></a>                  
+                        </div>
+                    @endif                    
                 </div>
             @endforeach
 
